@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>איך ליאם נולד</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
    crossorigin=""/>
@@ -124,16 +124,16 @@ function do_route(coor1, coor2, onEnd, route_zoom){
           iconAnchor:  [20, 24], // point of the icon which will correspond to marker's location
         });
 
-        coordinates(line.geometries[0].coords);
+
         function coordinates(coor) {
 
             var array = coor
             var myArray =[];
             var last=array.length-1
 
-            coorSalida = [array[0][1], array[0][0]]
-            coorLlegada = [array[last][1], array[last][0]]
-            console.log('llegada: '+coorLlegada+' salida: '+coorSalida)
+            coorStart = [array[0][1], array[0][0]]
+            coorEnd = [array[last][1], array[last][0]]
+
 
             for (var i = 0; i <= array.length-1; i++) {
                 console.log([array[i][1], array[i][0]]);
@@ -144,9 +144,10 @@ function do_route(coor1, coor2, onEnd, route_zoom){
 
 
         }
+        coordinates(line.geometries[0].coords);
 
-        var salida  = L.marker(coorSalida).addTo(mymap);
-        var llegada = L.marker(coorLlegada).addTo(mymap);
+        var markerStart  = L.marker(coorStart).addTo(mymap);
+        var markerEnd = L.marker(coorEnd).addTo(mymap);
 
         var animateEndCallback = function (){
             route_finish_playing['animate'] = true;
