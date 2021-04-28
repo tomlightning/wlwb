@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+    <style>
+        body {
+			    padding: 0;
+			    margin: 0;
+			}
+			html, body, #mapid {
+			    height: 100%;
+			}
+    </style>
+</head>
+<body>
+<style>
+/*
+ * The path-start class is added to each line
+ * to manage its animation - this interpolates
+ * between the starting and ending values for the
+ * stroke-dashoffset css property
+ */
+.path-start {
+  -webkit-transition:stroke-dashoffset 5s ease-in;
+     -moz-transition:stroke-dashoffset 5s ease-in;
+       -o-transition:stroke-dashoffset 5s ease-in;
+          transition:stroke-dashoffset 5s ease-in;
+  }
+</style>
+
+
+ <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+ 	<script src="js/orthodroma.js"></script>
+	<script src="js/AnimatedMarker.js"></script>
+ <!-- We use arc.js to make our paths curved. -->
+<script src='https://api.mapbox.com/mapbox.js/plugins/arc.js/v0.1.0/arc.js'></script>
+
+<div id="mapid"></div>
+<script>
+
+var tel_aviv = [32.0853, 34.7818];
+var italy_lago_di_garda = [45.6049, 10.6351];
+var swiss_mont_blanc = [45.8326, 6.8652];
+var france_lascaux = [45.0539 , 1.1677];
+var barcelona = [41.390205, 2.154007];
+var yosemite = [37.8651, -119.5383];
+
+var all_routes = [ tel_aviv, italy_lago_di_garda, swiss_mont_blanc, france_lascaux, barcelona, yosemite ];
+
+var animatedMarker;
+var InitialCenter = new L.LatLng(all_routes[0][0], all_routes[0][1]);
+		var mymap = L.map('mapid');
+		mymap.setView(InitialCenter, 5);
+
+
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+maxZoom: 20,
+id: 'mapbox/streets-v11',
+tileSize: 512,
+zoomOffset: -1,
+accessToken: 'pk.eyJ1IjoidG9tbGlnaHRuaW5nIiwiYSI6ImNrbzE4cWMwejBuNnEycnBnMDV6ZGpjdnoifQ.fufg_oAjTaIy93yY2_H8Zg'
+}).addTo(mymap);
+
+var route_finish_playing = {'animate': true, 'line': true};
+var show_next_route = false;
+
+function do_route(coor1, coor2, onEnd){
+     var generator = new arc.GreatCircle({y: coor1[0], x:	coor1[1]}, { y: coor2[0], x: coor2[1] });
+     var line = generator.Arc(100, { offset: 10 });
+    if (animatedMarker!=undefined){
+        mymap.removeLayer(animatedMarker);
+    }
+    route_finish_playing = {animation: false, line: false};
+    // add a new line to the map, but one with no points - yet
+        var polyline = L.polyline([],{
+            color:'red'
+        }).addTo(mymap);
+        // keep a tally of how many points we've added to the map
+        var pointsAdded = 0;
+        var linea1 =line.geometries[0].coords;
+        var pointsTobeAdded= linea1.length
+
+        // start adding new points to the map
+        add();
+
+
+        function add() {
+
+            // addLatLng takes a new latLng location and puts it at the end of the line
+            polyline.addLatLng(
+                L.latLng(linea1[pointsAdded][1],linea1[pointsAdded][0])
+            );
+
+            // pan the map along with where the line is being added.
+            mymap.setView([linea1[pointsAdded][1],linea1[pointsAdded][0]], 3);
+
+
+            if (++pointsAdded < pointsTobeAdded) {window.setTimeout(add, 10);
+            }else{
+                route_finish_playing['line'] = true;
+                if (onEnd){
+                    onEnd();
+                }
+            }
+        };//end add()
+
+
+
+
+        var lines, route, coorSalida, coorLlegada;
+
+        var myIcon = L.icon({
+          iconUrl: 'img/plane-heading-west.png',
+          iconAnchor:  [20, 24], // point of the icon which will correspond to marker's location
+        });
+
+        coordinates(line.geometries[0].coords);
+        function coordinates(coor) {
+
+            var array = coor
+            var myArray =[];
+            var last=array.length-1
+
+            coorSalida = [array[0][1], array[0][0]]
+            coorLlegada = [array[last][1], array[last][0]]
+            console.log('llegada: '+coorLlegada+' salida: '+coorSalida)
+
+            for (var i = 0; i <= array.length-1; i++) {
+                console.log([array[i][1], array[i][0]]);
+                myArray.push([array[i][1], array[i][0]])
+            };
+            console.log('myArray', myArray)
+            route = L.polyline(myArray);
+
+
+        }
+
+        var salida  = L.marker(coorSalida).addTo(mymap);
+        var llegada = L.marker(coorLlegada).addTo(mymap);
+
+        var animateEndCallback = function (){
+            route_finish_playing['animate'] = true;
+            if (onEnd){
+                onEnd();
+            }
+        }
+
+        animatedMarker = L.animatedMarker(route.getLatLngs(), {
+            icon: myIcon,
+            distance: 9200,  // meters
+            interval: 30, // milliseconds,
+            'onEnd': animateEndCallback
+        });
+
+        mymap.addLayer(animatedMarker);
+}
+
+//{y: 41.390205, x:	2.154007}, { y: 37.8651, x: -119.5383 }
+
+
+
+var current_loc = all_routes.shift();
+//var next_loc = all_routes.shift();
+
+
+
+
+
+var onEndCallback = function(){
+    if (route_finish_playing['animate']&&route_finish_playing['line']&&show_next_route){
+        if (all_routes.length){
+            show_next_route = false;
+            next_loc = all_routes.shift()
+            do_route(current_loc, next_loc, onEndCallback);
+            current_loc = next_loc;
+        }
+    }
+}
+
+//do_route(current_loc, next_loc, onEndCallback);
+//current_loc = next_loc;
+
+function onMapClick(e) {
+    show_next_route = true;
+    onEndCallback();
+}
+
+mymap.on('click', onMapClick);
+
+
+</script>
+</body>
+</html>
