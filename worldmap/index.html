@@ -52,6 +52,7 @@ var barcelona = [41.390205, 2.154007];
 var yosemite = [37.8651, -119.5383];
 
 var all_routes = [ tel_aviv, italy_lago_di_garda, swiss_mont_blanc, france_lascaux, barcelona, yosemite ];
+var routes_zoom = [5, 5, 7, 7, 6, 3];
 
 var animatedMarker;
 var InitialCenter = new L.LatLng(all_routes[0][0], all_routes[0][1]);
@@ -71,7 +72,7 @@ accessToken: 'pk.eyJ1IjoidG9tbGlnaHRuaW5nIiwiYSI6ImNrbzE4cWMwejBuNnEycnBnMDV6ZGp
 var route_finish_playing = {'animate': true, 'line': true};
 var show_next_route = false;
 
-function do_route(coor1, coor2, onEnd){
+function do_route(coor1, coor2, onEnd, route_zoom){
      var generator = new arc.GreatCircle({y: coor1[0], x:	coor1[1]}, { y: coor2[0], x: coor2[1] });
      var line = generator.Arc(100, { offset: 10 });
     if (animatedMarker!=undefined){
@@ -88,21 +89,23 @@ function do_route(coor1, coor2, onEnd){
         var pointsTobeAdded= linea1.length
 
         // start adding new points to the map
-        add();
+        add(route_zoom);
 
 
-        function add() {
+        function add(route_zoom) {
 
             // addLatLng takes a new latLng location and puts it at the end of the line
             polyline.addLatLng(
                 L.latLng(linea1[pointsAdded][1],linea1[pointsAdded][0])
             );
-
+            if (!route_zoom){
+                route_zoom = 3;
+            }
             // pan the map along with where the line is being added.
-            mymap.setView([linea1[pointsAdded][1],linea1[pointsAdded][0]], 3);
+            mymap.setView([linea1[pointsAdded][1],linea1[pointsAdded][0]], route_zoom);
 
 
-            if (++pointsAdded < pointsTobeAdded) {window.setTimeout(add, 10);
+            if (++pointsAdded < pointsTobeAdded) {window.setTimeout(function(){add(route_zoom)}, 10);
             }else{
                 route_finish_playing['line'] = true;
                 if (onEnd){
@@ -167,6 +170,8 @@ function do_route(coor1, coor2, onEnd){
 
 
 var current_loc = all_routes.shift();
+var current_zoom = routes_zoom.shift();
+
 //var next_loc = all_routes.shift();
 
 
@@ -177,8 +182,9 @@ var onEndCallback = function(){
     if (route_finish_playing['animate']&&route_finish_playing['line']&&show_next_route){
         if (all_routes.length){
             show_next_route = false;
+            var next_zoom = routes_zoom.shift();
             next_loc = all_routes.shift()
-            do_route(current_loc, next_loc, onEndCallback);
+            do_route(current_loc, next_loc, onEndCallback, next_zoom);
             current_loc = next_loc;
         }
     }
