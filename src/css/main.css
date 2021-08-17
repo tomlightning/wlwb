@@ -1,0 +1,346 @@
+body {
+    position:  relative;
+    font-family: Bevellier-Regular;
+
+}
+
+/* Background classes */
+.bg-top {
+    z-index: -2;
+
+    position: absolute;
+    top:  0px;;
+    width: 100%;
+    height: 100%;
+
+    background-image: url("../images/bg_top.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: top right;
+    filter: blur(20px);
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+@media (orientation: portrait) {
+  .bg-top {
+    background-image: url("../images/bg_top-cropped-small.png");
+    background-size: 500%;
+  }
+}
+
+.bg-bottom {
+    z-index: -2;
+
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 100%;
+
+    background: url("../images/bg_bottom.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    filter: blur(36px);
+}
+
+
+/*Navbar elements styles*/
+.nav-link, .nav-link:visited {
+    font-size: 18px;
+    line-height: 22px;
+    /* identical to box height, or 122% */
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+.nav-link:hover{
+    font-family: Bevellier-Bold;
+    color: #FFFFFF;
+
+}
+
+.green_dropdown_arrow {
+    background: url("../images/green_arrow_down.svg") no-repeat;
+    display: inline-block;
+    width: 14px;
+    height: 12px;
+    vertical-align: middle;
+    line-height: 1;
+    margin: 0.2rem 0 0 0.5rem;
+}
+
+.nav-link-collapsed {
+    color: #262626;
+}
+
+.nvabar-tagline {
+
+    font-size: 14px;
+    line-height: 28px;
+    /* identical to box height, or 200% */
+    color: #000000;
+}
+
+.landing-page-description {
+    font-family: Bevellier-MediumItalic;
+    font-size: 4.3em;
+    line-height: 1.1em;
+
+    color: #0040A3;
+}
+
+.landing-page-description-lg {
+    font-family: Bevellier-MediumItalic;
+    /*font-size: 48px;
+    line-height: 56px;*/
+    font-size: 3.4em;
+    line-height: 1.1em;
+
+    color: #0040A3;
+}
+
+.landing-page-description-md {
+    font-family: Bevellier-MediumItalic;
+    /*font-size: 48px;
+    line-height: 56px;*/
+    font-size: 2.4em;
+    line-height: 1.1em;
+
+    color: #0040A3;
+}
+
+.landing-page-description-sm {
+    font-family: Bevellier-MediumItalic;
+    /*font-size: 48px;
+    line-height: 56px;*/
+    font-size: 1.8em;
+    line-height: 1.1em;
+
+    color: #0040A3;
+}
+
+.mainsearch{
+    font-size: 1.4rem;
+}
+
+.main-section {
+    padding-top: 10vh;
+}
+.searchbox {
+    box-shadow: 0px 23px 65px -14px rgba(0, 48, 123, 0.21);
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right:  0;
+    
+    padding-left: 25px;
+}
+
+.search-button {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border:  1px solid green;
+    border-left:  0;
+    background-color: #120082;
+}
+
+
+/* Jumping 'browse dWebsites arrow*/
+.bounce {
+  -moz-animation: bounce 2s 3;
+  -webkit-animation: bounce 2s 3;
+  animation: bounce 2s 3;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+/* below landing page */
+.category-select {
+    background: #FFFFFF;
+    box-shadow: 0px 11px 35px -7px rgba(18, 0, 130, 0.22);
+    border-radius: 6px;
+    height: 46px;
+    width: 80%;
+    max-width: 322px;
+    padding-left: 15px;
+}
+
+.card-upper-rect {  
+    height: 195px;
+    background: #E3EBED;
+    border-radius: 6px;
+    margin-top:  50px;
+}
+
+.card-upper-rect-first-row-search-results {  
+    padding-top: 0;
+    margin-top: 15px;
+}
+
+.card-img {
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    border-radius:50%;
+    border: 1px solid black;
+}
+
+.card-site-name {
+    font-family: Bevellier-Regular;
+    font-size: 1.3em;
+    line-height: 25px;
+    color: #0040A3;
+    padding-top: 20px;
+}
+
+.card-site-description {
+    font-family: Alpino-Regular;
+    font-size: 1em;
+    line-height: 20px;
+    color: #000000;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+.card-site-link {
+    font-family: Alpino-Regular;
+    font-size: 1em;
+    line-height: 19px;
+}
+
+.card-content {
+    height:  90px;
+    padding-left:  10px;
+    padding-right:  10px;
+}
+
+.load-more-btn {
+    font-family: Alpino-Regular;
+    font-size: 16 px;
+    color: #120082;
+    width:  80%;
+    max-width: 300px;
+    border: 1px solid #120082;
+    box-sizing: border-box;
+    border-radius: 6px;
+}
+
+.load-more-div {
+    padding-top:  80px;
+    padding-bottom: 80px;
+}
+
+.footer-items {
+    margin: 20px;
+    font-family: Bevellier-Regular;
+    font-size: 18px;
+    line-height: 22px;
+    color: #0D0374;
+}
+
+.footer {
+    height: 300px;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(255, 255, 255)' stroke-width='5' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.navbar-toggler {
+  border-color: rgb(255, 255, 255);
+} 
+
+.mw-25 {
+    max-width:  25%;
+}
+
+.mw-50 {
+    max-width:  50%;
+}
+
+.mw-75 {
+    max-width: 75%;
+}
+
+.scroll-arrow {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  cursor: pointer;
+
+}
+
+.w-95 {
+    width:  95%! important;
+}
+
+.h-10 {
+    height: 10%! important;
+}
+
+.search-results {
+    font-family: Alpino-Light;
+    font-size: 28px;
+    color: #000000;
+    padding-top:  20px;
+    padding-bottom: 0;
+}
+
+.search-results-terms {
+    font-family: Alpino-Medium;
+    font-size: 28px;
+    color: #000000;
+}
+
+.NFTW-search-results {  
+    height: 85%;
+    background: white;
+    border-radius: 6px;
+    border: 4px solid #00E3BB;
+    margin-top:  15px;
+}
+
+.mw-640px {
+    max-width: 640px;
+}
+
+.about-image-xxl {
+    z-index:  -1;
+    right:  0;
+}
+
+.search-icon {
+    height:  25px;
+}
+
+.search-bar {
+    flex-grow:  0;
+}
+
+.w-35 {
+    width: 35% ! important;
+}
+
+.esteroids-navbar-toggler:focus {
+    box-shadow: 0 0 0 .25rem white;
+}
