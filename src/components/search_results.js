@@ -3,7 +3,7 @@ import SiteCard from "./site_card";
 
 function SearchResultsDetails(props) {
   return (
-    <div class="search-results">
+    <div className="search-results">
         Returned {props.amount} results: <span class="search-results-terms">{props.term}</span>
     </div>  
   )
@@ -35,15 +35,15 @@ function Cards(props) {
   return (
       <div>
         <div className="row">
-          <div class="col-md-9">
+          <div className="col-md-9">
             <CardsRow size = "4" sites = {websites.slice(0,3)} first = "true" />
             <CardsRow size = "4" sites = {websites.slice(3,6)} />
           </div>
 
-            <div class="col-md-3 v-100">
-              <div class="NFTW-search-results d-flex flex-column justify-content-center align-items-center">
-                <img class="card-img" src="./images/NFTW_placeholder.jpg"/>
-                <div class="card-site-name"> This belongs to YOU! </div>
+            <div className="col-md-3 v-100">
+              <div className="NFTW-search-results d-flex flex-column justify-content-center align-items-center">
+                <img className="card-img" src="./images/NFTW_placeholder.jpg"/>
+                <div className="card-site-name"> This belongs to YOU! </div>
               </div>
             </div>
         </div>

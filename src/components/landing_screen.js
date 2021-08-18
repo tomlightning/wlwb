@@ -1,5 +1,5 @@
 import ScrollToTop from "./scroll_to_top";
-import React from 'react';
+import React, { useState } from 'react';
 
 import Header from "./header";
 import {
@@ -23,14 +23,32 @@ import {
 // }
 
 function MainSearchBar(){
+  const [searchTerm, setSearchTerm] = useState('');
+  let history = useHistory();
+
+  const handleSearch = event =>{
+      event.preventDefault();
+      console.log('searching...' + searchTerm)
+      history.push({
+        pathname: '/search',
+        search: '?term='+searchTerm
+      });  
+  }
   //const [inputRef, setInputFocus] = useFocus()
+
+ 
+
   return (
-        <div className="input-group mt-4">
-          <input type="text"  ref={input => input && input.focus()} className="form-control searchbox mainsearch" placeholder="Search dWebsites" aria-label="Search dWebsites" aria-describedby="basic-addon2"/>
-          <div className="input-group-append">
-            <span className="input-group-text search-button" id="basic-addon2"><img src="./images/search.svg" alt="Search icon"/></span>
+        <form  onSubmit={handleSearch} >
+          <div className="input-group mt-4">
+            <input type="text"  ref={input => input && input.focus()} value={searchTerm} onChange={event => {
+                    setSearchTerm(event.target.value)
+                }} className="form-control searchbox mainsearch" placeholder="Search dWebsites" aria-label="Search dWebsites" aria-describedby="basic-addon2"/>
+            <div className="input-group-append">
+              <button type="submit" className="input-group-text search-button" id="basic-addon2"><img src="./images/search.svg" alt="Search icon"/></button>
+            </div>
           </div>
-        </div>);
+        </form>);
 }
 
 function SearchXXL() {
