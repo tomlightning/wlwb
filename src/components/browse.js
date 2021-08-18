@@ -1,36 +1,36 @@
 import { dwebData } from "../data/ens_dict.js";
 import SiteCard from "./site_card";
 
+
+function MenuSelect(props){
+  return ( <select className="category-select" id="category-select">
+  <option value="new">New</option>
+  <option value="popular">Popular</option>
+  <option value="recent">Recently Updated</option>
+  <option value="all">All</option>
+</select>);
+
+}
+
 function Menu(props) {
   if (props.size == "l") {
     return (
         <div className="d-sm-none d-md-none d-lg-none d-xl-none d-xxl-none">
-
           <div className="container text-center">
-            <select className="category-select" id="category-select">
-              <option value="new">New</option>
-              <option value="popular">Popular</option>
-              <option value="recent">Recently Updated</option>
-              <option value="all">All</option>
-            </select>
+            <MenuSelect />
           </div>
       </div>
-    )} else if (props.size == "s") {
+    );
+  } else if (props.size == "s") {
       return (
         <div className="d-none d-sm-block">
-
           <div className="container">
-            <select className="category-select" id="category-select">
-              <option value="new">New</option>
-              <option value="popular">Popular</option>
-              <option value="recent">Recently Updated</option>
-              <option value="all">All</option>
-            </select>
+          <MenuSelect />
           </div>
         </div>
       )
     } else {
-      return ("")
+      return ("<></>")
     }
 }
 
@@ -48,13 +48,12 @@ function CardsRow(props) {
 function Cards(props) {
   const websites = dwebData[props.category];
 
-  return (
-        <div className="row">
-          <CardsRow sites = {websites.slice(0,4)} />
-          <CardsRow sites = {websites.slice(4,8)} />
-          <CardsRow sites = {websites.slice(8,12)} />
-          <CardsRow sites = {websites.slice(12,16)} />
-        </div>
+  return (<>
+            <CardsRow sites = {websites.slice(0,4)} />
+            <CardsRow sites = {websites.slice(4,8)} />
+            <CardsRow sites = {websites.slice(8,12)} />
+            <CardsRow sites = {websites.slice(12,16)} />
+          </>
       )
 }
 

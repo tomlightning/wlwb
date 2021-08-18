@@ -1,8 +1,37 @@
 import ScrollToTop from "./scroll_to_top";
 import React from 'react';
-import {Link} from "react-router-dom";
 
 import Header from "./header";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+  useHistory,
+  useLocation
+} from "react-router-dom";
+// componentDidMount(){
+//   this.nameInput.focus();
+// }
+
+// const useFocus = () => {
+//   const htmlElRef = useRef(null)
+//   const setFocus = () => {htmlElRef.current &&  htmlElRef.current.focus()}
+
+//   return [ htmlElRef, setFocus ] 
+// }
+
+function MainSearchBar(){
+  //const [inputRef, setInputFocus] = useFocus()
+  return (
+        <div className="input-group mt-4">
+          <input type="text"  ref={input => input && input.focus()} className="form-control searchbox mainsearch" placeholder="Search dWebsites" aria-label="Search dWebsites" aria-describedby="basic-addon2"/>
+          <div className="input-group-append">
+            <span className="input-group-text search-button" id="basic-addon2"><img src="./images/search.svg" alt="Search icon"/></span>
+          </div>
+        </div>);
+}
 
 function SearchXXL() {
     return (
@@ -12,12 +41,7 @@ function SearchXXL() {
                 A search engine for the decentralized web
             </div>
 
-            <div className="input-group mt-4">
-                <input type="text" className="form-control searchbox mainsearch" placeholder="Search dWebsites" aria-label="Search dWebsites" aria-describedby="basic-addon2"/>
-                <div className="input-group-append">
-                  <span className="input-group-text search-button" id="basic-addon2"><img src="./images/search.svg" alt="Search icon"/></span>
-                </div>
-            </div>
+            <MainSearchBar />
         </div>
     )
 }
@@ -29,12 +53,7 @@ function SearchLGXL() {
             A search engine for the decentralized web
           </div>
 
-          <div className="input-group mt-4">
-            <input type="text" className="form-control searchbox mainsearch" placeholder="Search dWebsites" aria-label="Search dWebsites" aria-describedby="basic-addon2"/>
-            <div className="input-group-append">
-              <span className="input-group-text search-button" id="basic-addon2"><img src="./images/search.svg" alt="Search icon"/></span>
-            </div>
-          </div>
+          <MainSearchBar />
         </div>
     )
 }
@@ -46,12 +65,7 @@ function SearchMD() {
             A search engine for the decentralized web
           </div>
 
-          <div className="input-group mt-4">
-            <input type="text" className="form-control searchbox mainsearch" placeholder="Search dWebsites" aria-label="Search dWebsites" aria-describedby="basic-addon2"/>
-            <div className="input-group-append">
-              <span className="input-group-text search-button" id="basic-addon2"><img src="./images/search.svg" alt="Search icon"/></span>
-            </div>
-          </div>
+          <MainSearchBar />
         </div>
     )
 }
@@ -64,12 +78,7 @@ function SearchSM() {
             A search engine for the decentralized web
           </div>
 
-          <div className="input-group mt-4">
-            <input type="text" className="form-control searchbox mainsearch" placeholder="Search dWebsites" aria-label="Search dWebsites" aria-describedby="basic-addon2"/>
-            <div className="input-group-append">
-              <span className="input-group-text search-button" id="basic-addon2"><img src="./images/search.svg" alt="Search icon"/></span>
-            </div>
-          </div>
+          <MainSearchBar />
         </div>
     )
 }
@@ -113,14 +122,19 @@ function SearchNFTMainXS() {
                 <img className="mw-75"  src="./images/TDW_Landingpage_placeholder-small.png" alt="TDW placeholder"/>
             </div>
 
-          <div className="input-group mt-4">
-            <input type="text" className="form-control searchbox mainsearch" placeholder="Search dWebsites" aria-label="Search dWebsites" aria-describedby="basic-addon2"/>
-            <div className="input-group-append">
-              <span className="input-group-text search-button" id="basic-addon2"><img src="./images/search.svg" alt="Search icon"/></span>
-            </div>
-          </div>
+            <MainSearchBar />
         </div>
     )
+}
+
+function BrowseSitesHelper(){
+  let history = useHistory();
+
+  return (<div className="position-absolute bottom-0 w-95 text-center bounce" onClick={() => {
+     history.push("#browse_sites");
+  }}>
+  <img src="./images/arrow.svg" alt="Arrow down"/>Browse dWebsites
+</div>);
 }
 
 function LandingScreen(){
@@ -141,9 +155,7 @@ function LandingScreen(){
                 <SearchNFTMainXS/>
             </div>
 
-            <div className="position-absolute bottom-0 w-95 text-center bounce">
-                <img src="./images/arrow.svg" alt="Arrow down"/> Browse dWebsites
-            </div>
+            <BrowseSitesHelper id="browse_sites" />
         </div>
     )
 }
