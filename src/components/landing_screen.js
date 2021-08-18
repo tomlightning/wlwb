@@ -22,27 +22,25 @@ import {
 //   return [ htmlElRef, setFocus ] 
 // }
 
-function MainSearchBar(){
-  const [searchTerm, setSearchTerm] = useState('');
+function MainSearchBar(props){
+  
   let history = useHistory();
 
   const handleSearch = event =>{
       event.preventDefault();
-      console.log('searching...' + searchTerm)
       history.push({
         pathname: '/search',
-        search: '?term='+searchTerm
+        search: '?term='+props.searchTerm
       });  
   }
   //const [inputRef, setInputFocus] = useFocus()
 
- 
 
   return (
         <form  onSubmit={handleSearch} >
           <div className="input-group mt-4">
-            <input type="text"  ref={input => input && input.focus()} value={searchTerm} onChange={event => {
-                    setSearchTerm(event.target.value)
+            <input type="text"  ref={input => input && input.focus()} value={props.searchTerm} onChange={event => {
+                    props.setSearchTerm(event.target.value)
                 }} className="form-control searchbox mainsearch" placeholder="Search dWebsites" aria-label="Search dWebsites" aria-describedby="basic-addon2"/>
             <div className="input-group-append">
               <button type="submit" className="input-group-text search-button" id="basic-addon2"><img src="./images/search.svg" alt="Search icon"/></button>
@@ -51,7 +49,7 @@ function MainSearchBar(){
         </form>);
 }
 
-function SearchXXL() {
+function SearchXXL(props) {
     return (
         <div className="col-xl-6 d-none d-xxl-block my-auto">
               
@@ -59,44 +57,48 @@ function SearchXXL() {
                 A search engine for the decentralized web
             </div>
 
-            <MainSearchBar />
+            <MainSearchBar searchTerm={props.searchTerm} 
+                            setSearchTerm={props.setSearchTerm}/>
         </div>
     )
 }
 
-function SearchLGXL() {
+function SearchLGXL(props) {
     return (
         <div className="col-lg-6 d-none d-lg-block d-xxl-none  my-auto">          
           <div className="landing-page-description-lg"> 
             A search engine for the decentralized web
           </div>
 
-          <MainSearchBar />
+          <MainSearchBar searchTerm={props.searchTerm} 
+                            setSearchTerm={props.setSearchTerm}/>
         </div>
     )
 }
 
-function SearchMD() {
+function SearchMD(props) {
     return (
         <div className="col-md-6 d-none d-sm-none d-md-block d-lg-none d-xl-none d-xxl-none mw-50 my-auto">
           <div className="landing-page-description-md"> 
             A search engine for the decentralized web
           </div>
 
-          <MainSearchBar />
+          <MainSearchBar searchTerm={props.searchTerm} 
+                            setSearchTerm={props.setSearchTerm}/>
         </div>
     )
 }
 
 
-function SearchSM() {
+function SearchSM(props) {
     return (
         <div className="col-md-6 d-none d-sm-block d-md-none d-lg-none d-xl-none d-xxl-none mw-50 my-auto">
           <div className="landing-page-description-sm"> 
             A search engine for the decentralized web
           </div>
 
-          <MainSearchBar />
+          <MainSearchBar searchTerm={props.searchTerm} 
+                            setSearchTerm={props.setSearchTerm}/>
         </div>
     )
 }
@@ -133,14 +135,15 @@ function NFTMainSM() {
     )
 }
 
-function SearchNFTMainXS() {
+function SearchNFTMainXS(props) {
     return (
         <div className="col-12 d-sm-none d-md-none d-lg-none d-xl-none d-xxl-none mh-100 my-auto">
           <div className="text-center m-3">
                 <img className="mw-75"  src="./images/TDW_Landingpage_placeholder-small.png" alt="TDW placeholder"/>
             </div>
 
-            <MainSearchBar />
+            <MainSearchBar  searchTerm={props.searchTerm} 
+                            setSearchTerm={props.setSearchTerm}/>
         </div>
     )
 }
@@ -161,22 +164,27 @@ function BrowseSitesHelper(){
 </div>);
 }
 
-function LandingScreen(){
+const LandingScreen = ({searchTerm, setSearchTerm})=>{
 
     return (
         <div id="main-container" className="container d-flex flex-column vh-100 position-relative">
             <Header />
 
             <div className="row main-section">
-                <SearchXXL/>
+                <SearchXXL searchTerm={searchTerm} 
+                            setSearchTerm={setSearchTerm}/>
                 <NFTMainLXXL/>
-                <SearchLGXL/>
+                <SearchLGXL searchTerm={searchTerm} 
+                            setSearchTerm={setSearchTerm}/>
                 <NFTMainLGXL/>
-                <SearchMD/>
+                <SearchMD searchTerm={searchTerm} 
+                            setSearchTerm={setSearchTerm}/>
                 <NFTMainMD/>
-                <SearchSM/>
+                <SearchSM searchTerm={searchTerm} 
+                            setSearchTerm={setSearchTerm}/>
                 <NFTMainSM/>
-                <SearchNFTMainXS/>
+                <SearchNFTMainXS searchTerm={searchTerm} 
+                            setSearchTerm={setSearchTerm}/>
             </div>
 
             <BrowseSitesHelper />

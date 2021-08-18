@@ -1,6 +1,5 @@
 /* React imports */
-import React from "react";
-// import React, { Suspense, useState, useEffect } from "react";
+import React, { Suspense, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import {
     HashRouter as Router,
@@ -25,49 +24,52 @@ import About from "./components/about"
 
 import ScrollToTop from "./components/scroll_to_top";
 
-class App extends React.Component {
+const App = () => {
+    const [searchTerm, setSearchTerm] = useState('');
 
-    render() {
+    
      
-        return (
-        <Router basename="/">
-            <ScrollToTop />
-            <Switch>
-                <Route exact path="/">
-                    <ScrollToTop/>
-                    <LandingScreen/>
-                    <Browse/>
-                </Route>
-                <Route path="/search">
-                    <ScrollToTop/>
-                    <div className="container">
-                        <Header/>
-                    </div>
-                    <SearchResults amount="12" term="blockchain"/>
-                </Route>
-                <Route path="/privacy">
-                    <ScrollToTop/>
-                    <div className="container">
-                        <Header/>
-                    </div>
-                    <PrivacyPolicy/>
-                </Route>
-                <Route path="/about">
-                    <ScrollToTop/>
-                    <div className="container">
-                        <Header/>
-                    </div>
-                    <About/>
-                </Route>
-            </Switch>
+    return (
+    <Router basename="/">
+        <ScrollToTop />
+        <Switch>
+            <Route exact path="/">
+                <ScrollToTop/>
+                <LandingScreen searchTerm={searchTerm} 
+                            setSearchTerm={setSearchTerm}/>
+                <Browse/>
+            </Route>
+            <Route path="/search">
+                <ScrollToTop/>
+                <div className="container">
+                    <Header/>
+                </div>
+                <SearchResults searchTerm={searchTerm} 
+                            setSearchTerm={setSearchTerm} amount="12" />
+            </Route>
+            <Route path="/privacy">
+                <ScrollToTop/>
+                <div className="container">
+                    <Header/>
+                </div>
+                <PrivacyPolicy/>
+            </Route>
+            <Route path="/about">
+                <ScrollToTop/>
+                <div className="container">
+                    <Header/>
+                </div>
+                <About/>
+            </Route>
+        </Switch>
 
-            <Footer/>
-            <div className="bg-top"> </div>
-            <div className="bg-bottom"> </div>
-    
-    
-        </Router>
-        );}
+        <Footer/>
+        <div className="bg-top"> </div>
+        <div className="bg-bottom"> </div>
+
+
+    </Router>
+    );
 }
 
 ReactDOM.render(<App />, document.getElementById("body"));
