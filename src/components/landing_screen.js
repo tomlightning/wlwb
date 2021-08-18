@@ -12,8 +12,8 @@ function SearchXXL() {
                 A search engine for the decentralized web
             </div>
 
-            <div className="input-group mb-3">
-                <input type="text" className="form-control searchbox" placeholder="Search dWebsites" aria-label="Search dWebsites" aria-describedby="basic-addon2"/>
+            <div className="input-group mt-4">
+                <input type="text" className="form-control searchbox mainsearch" placeholder="Search dWebsites" aria-label="Search dWebsites" aria-describedby="basic-addon2"/>
                 <div className="input-group-append">
                   <span className="input-group-text search-button" id="basic-addon2"><img src="./images/search.svg" alt="Search icon"/></span>
                 </div>
@@ -29,8 +29,8 @@ function SearchLGXL() {
             A search engine for the decentralized web
           </div>
 
-          <div className="input-group mb-3">
-            <input type="text" className="form-control searchbox" placeholder="Search dWebsites" aria-label="Search dWebsites" aria-describedby="basic-addon2"/>
+          <div className="input-group mt-4">
+            <input type="text" className="form-control searchbox mainsearch" placeholder="Search dWebsites" aria-label="Search dWebsites" aria-describedby="basic-addon2"/>
             <div className="input-group-append">
               <span className="input-group-text search-button" id="basic-addon2"><img src="./images/search.svg" alt="Search icon"/></span>
             </div>
@@ -46,8 +46,8 @@ function SearchMD() {
             A search engine for the decentralized web
           </div>
 
-          <div className="input-group mb-3">
-            <input type="text" className="form-control searchbox" placeholder="Search dWebsites" aria-label="Search dWebsites" aria-describedby="basic-addon2"/>
+          <div className="input-group mt-4">
+            <input type="text" className="form-control searchbox mainsearch" placeholder="Search dWebsites" aria-label="Search dWebsites" aria-describedby="basic-addon2"/>
             <div className="input-group-append">
               <span className="input-group-text search-button" id="basic-addon2"><img src="./images/search.svg" alt="Search icon"/></span>
             </div>
@@ -64,8 +64,8 @@ function SearchSM() {
             A search engine for the decentralized web
           </div>
 
-          <div className="input-group mb-3">
-            <input type="text" className="form-control searchbox" placeholder="Search dWebsites" aria-label="Search dWebsites" aria-describedby="basic-addon2"/>
+          <div className="input-group mt-4">
+            <input type="text" className="form-control searchbox mainsearch" placeholder="Search dWebsites" aria-label="Search dWebsites" aria-describedby="basic-addon2"/>
             <div className="input-group-append">
               <span className="input-group-text search-button" id="basic-addon2"><img src="./images/search.svg" alt="Search icon"/></span>
             </div>
@@ -113,8 +113,8 @@ function SearchNFTMainXS() {
                 <img className="mw-75"  src="./images/TDW_Landingpage_placeholder-small.png" alt="TDW placeholder"/>
             </div>
 
-          <div className="input-group mb-3">
-            <input type="text" className="form-control searchbox" placeholder="Search dWebsites" aria-label="Search dWebsites" aria-describedby="basic-addon2"/>
+          <div className="input-group mt-4">
+            <input type="text" className="form-control searchbox mainsearch" placeholder="Search dWebsites" aria-label="Search dWebsites" aria-describedby="basic-addon2"/>
             <div className="input-group-append">
               <span className="input-group-text search-button" id="basic-addon2"><img src="./images/search.svg" alt="Search icon"/></span>
             </div>

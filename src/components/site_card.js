@@ -8,7 +8,6 @@ import React from "react";
 function isFirst(check) {
     const first = check ? "card-upper-rect-first-row-search-results" : "";
 
-    console.log("first", first)
     return first;
 }
 
@@ -33,18 +32,9 @@ class SiteCard extends React.Component{
         return 'https://'+this.props.site.name + '.eth.link';
     }
 
-    // getTimeAgo(show){
-    //     if (show) 
-    //         return (<div className="timeagosmall">
-    //                         {timeAgo.format(Date.parse(this.props.site.update))}
-    //                 </div>)
-    //     else
-    //         return '';
-
-    // }
     
     getAddress() {
-        return this.props.site.name + '.eth.link';
+        return this.props.site.n + '.eth.link';
     }
 
 
@@ -58,11 +48,11 @@ class SiteCard extends React.Component{
             <div className={this.getColumnSize()}>
                 <div className={"card-upper-rect " + isFirst(this.props.first) + " d-flex flex-column justify-content-center align-items-center"}>
                   <img className="card-img" src={this.getScreenshotUrl()}/>
-                  <div className="card-site-name"> {this.props.site.title} </div>
+                  <div className="card-site-name"> {this.props.site.t} </div>
                 </div> 
                 <div className="card-content d-flex flex-column justify-content-around align-items-center">
                   <div className="card-site-description">
-                    {this.props.site.desc}
+                    {this.props.site.d}
                   </div>
                   <div className="card-site-link">
                     <a href={this.getLink()}> {this.getAddress()} </a>

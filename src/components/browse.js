@@ -17,10 +17,10 @@ function Menu(props) {
       </div>
     )} else if (props.size == "s") {
       return (
-        <div class="d-none d-sm-block">
+        <div className="d-none d-sm-block">
 
-          <div class="container">
-            <select class="category-select" id="category-select">
+          <div className="container">
+            <select className="category-select" id="category-select">
               <option value="new">New</option>
               <option value="popular">Popular</option>
               <option value="recent">Recently Updated</option>

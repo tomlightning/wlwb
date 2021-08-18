@@ -2,6 +2,7 @@ import React from "react";
 import { Helmet } from 'react-helmet'
 import { withRouter } from "react-router";
 import routes from './routes'
+import {Link} from "react-router-dom";
 
 function Navbar(props) {
   const home = (props.location.pathname === "/") ? true : false
@@ -16,30 +17,52 @@ function Navbar(props) {
 function NavBarSecondaryPage(props){
   return (
     <nav className="navbar navbar-expand-xl h-100">
-            <img className="navbar-brand h-100 d-none d-xl-block" src="./images/logo.svg" alt="Esteroids logo and tagline"/>
+      <img className="navbar-brand h-100 d-none d-xl-block" src="./images/logo.svg" alt="Esteroids logo and tagline"/>
 
-            <img className="navbar-brand h-100 d-xl-none d-xxl-none" src="./images/logo.svg" alt="Esteroids logo and tagline"/>
+      <img className="navbar-brand h-100 d-xl-none d-xxl-none" src="./images/logo.svg" alt="Esteroids logo and tagline"/>
 
       <button className="navbar-toggler navbar-toggler-right collapsed esteroids-navbar-toggler" 
-              type="button" data-bs-toggle="collapse" data-bs-target="#search-bar" 
-              aria-expanded="false" onClick={setNavbarCollapsedColor}>
-        <span className="navbar-toggler-icon"></span>
+      type="button" data-bs-toggle="collapse" data-bs-target="#search-bar" 
+      aria-expanded="false" onClick={setNavbarCollapsedColor}>
+      <span className="navbar-toggler-icon"></span>
       </button>
 
       <form id="search-bar" className="navbar-nav w-35 navbar-collapse collapse search-bar">
         <div className="input-group mb-3 search-icon">
-            <input type="text" className="form-control searchbox" placeholder="search dWebsites" 
-                   aria-label="search dWebsites" aria-describedby="basic-addon2"/>
+          <input type="text" className="form-control searchbox" placeholder="Search dWebsites" 
+                aria-label="Search dWebsites" aria-describedby="basic-addon2"/>
 
-            <div className="input-group-append">
-              <span id="basic-addon2" className="input-group-text search-button">
-                <img src="./images/search.svg" className="search-icon" alt="Search icon"/>
-               </span>
-            </div>
+          <div className="input-group-append">
+            <span id="basic-addon2" className="input-group-text search-button">
+              <img src="./images/search.svg" className="search-icon" alt="Search icon"/>
+            </span>
           </div>
+        </div>
       </form>
 
     </nav>
+  )
+}
+
+const MAIN_NAV_BAR_ITEMS = [ 
+{label: 'New', link: '/new', id: 'nav-link-1'},
+{label: 'Popular', link: '/popular', id: 'nav-link-2'},
+{label: 'Recently Updated', link: '/recently-updated', id: 'nav-link-3'}, 
+{label: 'All', link: '/all', id: 'nav-link-4'}];
+
+const NavBarLink = React.forwardRef((props, ref) => (
+  <a ref={ref} {...props}> {props.children}</a>
+))
+
+
+
+function NavBarItemMainPage(props){
+  return (
+    <li className="nav-item">
+      <Link to={props.value.link} component={NavBarLink} className="nav-link" >{props.value.label}
+        <i className="green_dropdown_arrow"/>
+      </Link>
+    </li>
   )
 }
 
@@ -56,30 +79,14 @@ function NavBarMainPage(props){
 
       <div id="navb" className="navbar-collapse collapse order-3">
         <ul className="navbar-nav ms-auto">
-          <li className="nav-item">
-            <a id="nav-link-1" className="nav-link" href="/">New 
-              <i class="green_dropdown_arrow"/>
-            </a>
-          </li>
-          <li className="nav-item">
-            <a id="nav-link-2" className="nav-link" href="/">Popular 
-              <i class="green_dropdown_arrow"/>
-            </a>
-          </li>
-          <li className="nav-item">
-            <a id="nav-link-3" className="nav-link" href="/">Recently Updated
-              <i class="green_dropdown_arrow"/>
-            </a>
-          </li>
-          <li className="nav-item">
-            <a id="nav-link-4" className="nav-link" href="/">All
-              <i class="green_dropdown_arrow"/>
-            </a>
-          </li>
+          {MAIN_NAV_BAR_ITEMS.map((menu_item, index) => (
+                            <NavBarItemMainPage key={index} value={menu_item} />
+                        ))}
         </ul>
       </div> {/*-- navb */}
     </nav>
   )
+ 
 }
 
 function setNavbarCollapsedColor() {
@@ -103,8 +110,7 @@ class Header extends React.Component{
 
     render() {
         const { location } = this.props;
-        console.log("location.pathname: ", location.pathname);
-        console.log("routes: ", routes);
+
         const page_title = routes[location.pathname]['pageTitle']||'Esteroids: decentralized web front page';
 
         return ( <> <Helmet>
