@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 
 function Footer(){
     return (
@@ -15,19 +16,27 @@ function Footer(){
                     </div>
 
                     <div className="footer-items d-none d-lg-block">
-                      <img src="./images/info.svg" alt="info emoji"/>&nbsp;&nbsp; ABOUT ESTEROIDS &nbsp;&nbsp;<img src="./images/blue_arrow_left.svg" alt="left blue arrow"/>
+                      <Link to="/about">
+                        <img src="./images/info.svg" alt="info emoji"/>&nbsp;&nbsp; ABOUT ESTEROIDS &nbsp;&nbsp;<img src="./images/blue_arrow_left.svg" alt="left blue arrow"/>
+                      </Link>
                     </div>
 
                     <div className="footer-items d-lg-none d-xl-non d-xxl-none">
-                      <img src="./images/info.svg" alt="info emoji"/>
+                      <Link to="/about">
+                        <img src="./images/info.svg" alt="info emoji"/>
+                      </Link>
                     </div>
 
                   </div>
                   <div className="footer-items d-none d-lg-block">
-                    <img src="./images/logo.svg" alt="Esteroids logo"/>
+                    <Link to="/privacy">
+                      <img src="./images/logo.svg" alt="Esteroids logo"/>
+                      </Link>
                   </div>
                   <div className="footer-items">
-                    PRIVACY POLICY&nbsp;&nbsp;<img src="./images/blue_arrow_left.svg" alt="left blue arrow"/>
+                    <Link to="/privacy">
+                      PRIVACY POLICY&nbsp;&nbsp;<img src="./images/blue_arrow_left.svg" alt="left blue arrow"/>
+                    </Link>
                   </div>
                 </div>
               </div>

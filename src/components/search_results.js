@@ -11,25 +11,25 @@ function SearchResultsDetails(props) {
   )
 }
 
-function CardsRow(props) {
-  if (!props.first) {
-    return (
-      <div className="row">
-        <SiteCard size = {props.size}  site = {dwebData['sites'][props.sites[0]]}/>
-        <SiteCard size = {props.size} site = {dwebData['sites'][props.sites[1]]}/>
-        <SiteCard size = {props.size} site = {dwebData['sites'][props.sites[2]]}/>
-      </div>
-    )
-  } else {
-    return (
-      <div className="row">
-        <SiteCard size = {props.size}  site = {dwebData['sites'][props.sites[0]]} first = "true"/>
-        <SiteCard size = {props.size} site = {dwebData['sites'][props.sites[1]]} first = "true"/>
-        <SiteCard size = {props.size} site = {dwebData['sites'][props.sites[2]]} first = "true"/>
-      </div>
-    )
-  }
-}
+// function CardsRow(props) {
+//   if (!props.first) {
+//     return (
+//       <div className="row">
+//         <SiteCard size = {props.size}  site = {dwebData['sites'][props.sites[0]]}/>
+//         <SiteCard size = {props.size} site = {dwebData['sites'][props.sites[1]]}/>
+//         <SiteCard size = {props.size} site = {dwebData['sites'][props.sites[2]]}/>
+//       </div>
+//     )
+//   } else {
+//     return (
+//       <div className="row">
+//         <SiteCard size = {props.size}  site = {dwebData['sites'][props.sites[0]]} first = "true"/>
+//         <SiteCard size = {props.size} site = {dwebData['sites'][props.sites[1]]} first = "true"/>
+//         <SiteCard size = {props.size} site = {dwebData['sites'][props.sites[2]]} first = "true"/>
+//       </div>
+//     )
+//   }
+// }
 
 const searchResults = (searchTerm, sites) => {
 
@@ -77,11 +77,6 @@ function Cards(props) {
       )
 }
 
-{/* <CardsRow size = "4" sites = {websites.slice(0,3)} first = "true" />
-<CardsRow size = "4" sites = {websites.slice(3,6)} />
-
-<CardsRow size = "3" sites = {websites.slice(6,9)} />
-<CardsRow size = "3" sites = {websites.slice(9,12)} /> */}
 
 const LoadMore = ({totalResults, currentResultsShown, setCurrentResultsShown}) => {
     console.log(currentResultsShown);
@@ -89,7 +84,7 @@ const LoadMore = ({totalResults, currentResultsShown, setCurrentResultsShown}) =
     if (totalResults>currentResultsShown){
       return (
       <div className="text-center load-more-div">
-          <button type="button" className="btn btn-outline-secondary load-more-btn" onClick={event => {
+          <button type="button" className="btn btn-outline-secondary load-more-btn" onClick={() => {
                     setCurrentResultsShown(currentResultsShown+12)
                 }}>Load More</button>
       </div>

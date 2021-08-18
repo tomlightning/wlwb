@@ -34,12 +34,12 @@ class SiteCard extends React.Component{
 
     
     getAddress() {
-        return this.props.site.n + '.eth.link';
+        return this.props.site.n + '.eth';
     }
 
 
     getColumnSize() {
-        return 'col-md-' + this.props.size;
+        return 'col-md-' + this.props.size+' btn';
     }
 
     render(){
