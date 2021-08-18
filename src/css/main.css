@@ -200,7 +200,7 @@ body {
 
 .card-site-name {
     font-family: Bevellier-Regular;
-    font-size: 1.3em;
+    font-size: 1.4em;
     line-height: 25px;
     color: #0040A3;
     padding-top: 20px;
@@ -208,7 +208,7 @@ body {
 
 .card-site-description {
     font-family: Alpino-Regular;
-    font-size: 1em;
+    font-size: 1.1em;
     line-height: 20px;
     color: #000000;
     text-align: center;
@@ -221,7 +221,7 @@ body {
 
 .card-site-link {
     font-family: Alpino-Regular;
-    font-size: 1em;
+    font-size: 1.1em;
     line-height: 19px;
 }
 

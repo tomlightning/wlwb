@@ -13,7 +13,7 @@ function SearchXXL() {
             </div>
 
             <div className="input-group mb-3">
-                <input type="text" className="form-control searchbox" placeholder="search dWebsites" aria-label="search dWebsites" aria-describedby="basic-addon2"/>
+                <input type="text" className="form-control searchbox" placeholder="Search dWebsites" aria-label="Search dWebsites" aria-describedby="basic-addon2"/>
                 <div className="input-group-append">
                   <span className="input-group-text search-button" id="basic-addon2"><img src="./images/search.svg" alt="Search icon"/></span>
                 </div>
@@ -30,7 +30,7 @@ function SearchLGXL() {
           </div>
 
           <div className="input-group mb-3">
-            <input type="text" className="form-control searchbox" placeholder="search dWebsites" aria-label="search dWebsites" aria-describedby="basic-addon2"/>
+            <input type="text" className="form-control searchbox" placeholder="Search dWebsites" aria-label="Search dWebsites" aria-describedby="basic-addon2"/>
             <div className="input-group-append">
               <span className="input-group-text search-button" id="basic-addon2"><img src="./images/search.svg" alt="Search icon"/></span>
             </div>
@@ -47,7 +47,7 @@ function SearchMD() {
           </div>
 
           <div className="input-group mb-3">
-            <input type="text" className="form-control searchbox" placeholder="search dWebsites" aria-label="search dWebsites" aria-describedby="basic-addon2"/>
+            <input type="text" className="form-control searchbox" placeholder="Search dWebsites" aria-label="Search dWebsites" aria-describedby="basic-addon2"/>
             <div className="input-group-append">
               <span className="input-group-text search-button" id="basic-addon2"><img src="./images/search.svg" alt="Search icon"/></span>
             </div>
@@ -65,7 +65,7 @@ function SearchSM() {
           </div>
 
           <div className="input-group mb-3">
-            <input type="text" className="form-control searchbox" placeholder="search dWebsites" aria-label="search dWebsites" aria-describedby="basic-addon2"/>
+            <input type="text" className="form-control searchbox" placeholder="Search dWebsites" aria-label="Search dWebsites" aria-describedby="basic-addon2"/>
             <div className="input-group-append">
               <span className="input-group-text search-button" id="basic-addon2"><img src="./images/search.svg" alt="Search icon"/></span>
             </div>
@@ -114,7 +114,7 @@ function SearchNFTMainXS() {
             </div>
 
           <div className="input-group mb-3">
-            <input type="text" className="form-control searchbox" placeholder="search dWebsites" aria-label="search dWebsites" aria-describedby="basic-addon2"/>
+            <input type="text" className="form-control searchbox" placeholder="Search dWebsites" aria-label="Search dWebsites" aria-describedby="basic-addon2"/>
             <div className="input-group-append">
               <span className="input-group-text search-button" id="basic-addon2"><img src="./images/search.svg" alt="Search icon"/></span>
             </div>

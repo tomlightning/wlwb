@@ -46,7 +46,7 @@ function NavBarSecondaryPage(props){
 function NavBarMainPage(props){
   return (
     <nav className="navbar navbar-expand-xl flex-grow-0">
-       <img className="navbar-brand" src="./images/logo_and_tagline.svg" alt="Esteroids logo and tagline"/>
+       <img className="navbar-brand" src="./images/logo.svg" alt="Esteroids logo and tagline"/>
 
       <button className="navbar-toggler navbar-toggler-right collapsed" 
         type="button" data-bs-toggle="collapse" data-bs-target="#navb" 
