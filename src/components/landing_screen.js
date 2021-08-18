@@ -130,8 +130,14 @@ function SearchNFTMainXS() {
 function BrowseSitesHelper(){
   let history = useHistory();
 
-  return (<div className="position-absolute bottom-0 w-95 text-center bounce" onClick={() => {
-     history.push("#browse_sites");
+  return (<div className="position-absolute bottom-0 w-95 text-center bounce btn" onClick={() => {
+        const id = 'browse_sites'
+        let element = document.getElementById(id);
+        setTimeout(() => {
+            if (element) {
+                element.scrollIntoView();
+            }
+        }, 200);
   }}>
   <img src="./images/arrow.svg" alt="Arrow down"/>Browse dWebsites
 </div>);
@@ -155,7 +161,7 @@ function LandingScreen(){
                 <SearchNFTMainXS/>
             </div>
 
-            <BrowseSitesHelper id="browse_sites" />
+            <BrowseSitesHelper />
         </div>
     )
 }

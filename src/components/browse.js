@@ -60,7 +60,7 @@ function Cards(props) {
 
 function Browse(){
     return (
-      <div className="container">
+      <div className="container" id="browse_sites">
         <Menu size ="l"/>
         <Menu size ="s"/>
         <Cards category="new"/>

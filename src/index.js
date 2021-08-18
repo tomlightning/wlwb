@@ -32,9 +32,9 @@ class App extends React.Component {
         return (
         <Router basename="/">
             <ScrollToTop />
-
             <Switch>
                 <Route exact path="/">
+                    <ScrollToTop/>
                     <LandingScreen/>
                     <Browse/>
                 </Route>
