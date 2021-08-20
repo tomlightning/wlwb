@@ -48,11 +48,11 @@ class SiteCard extends React.Component{
             <div className={this.getColumnSize()}>
                 <div className={"card-upper-rect " + isFirst(this.props.first) + " d-flex flex-column justify-content-center align-items-center"}>
                   <img className="card-img" src={this.getScreenshotUrl()}/>
-                  <div className="card-site-name"> {this.props.site.name} </div>
+                  <div className="card-site-name"> {this.props.site.title} </div>
                 </div> 
                 <div className="card-content d-flex flex-column justify-content-around align-items-center">
                   <div className="card-site-description">
-                    {this.props.site.d}
+                    {this.props.site.desc}
                   </div>
                   <div className="card-site-link">
                     <a href={this.getLink()}> {this.getAddress()} </a>
