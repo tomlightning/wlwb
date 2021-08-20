@@ -34,7 +34,7 @@ class SiteCard extends React.Component{
 
     
     getAddress() {
-        return this.props.site.n + '.eth';
+        return this.props.site.name + '.eth';
     }
 
 
@@ -48,7 +48,7 @@ class SiteCard extends React.Component{
             <div className={this.getColumnSize()}>
                 <div className={"card-upper-rect " + isFirst(this.props.first) + " d-flex flex-column justify-content-center align-items-center"}>
                   <img className="card-img" src={this.getScreenshotUrl()}/>
-                  <div className="card-site-name"> {this.props.site.t} </div>
+                  <div className="card-site-name"> {this.props.site.name} </div>
                 </div> 
                 <div className="card-content d-flex flex-column justify-content-around align-items-center">
                   <div className="card-site-description">
