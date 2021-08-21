@@ -2,17 +2,7 @@ import React from "react";
 import { dwebData } from "../data/ens_dict.js";
 import SiteCard from "./site_card";
 
-
-function CardsRow(props) {
-  return (
-    <div className="row">
-      <SiteCard size = "3"  site = {dwebData['sites'][props.sites[0]]}/>
-      <SiteCard size = "3" site = {dwebData['sites'][props.sites[1]]}/>
-      <SiteCard size = "3" site = {dwebData['sites'][props.sites[2]]}/>
-      <SiteCard size = "3" site = {dwebData['sites'][props.sites[3]]}/>
-    </div>
-  )
-}
+const default_cards_number = "12";
 
 function Cards(props) {
   if (props.category == "all") 
@@ -25,26 +15,30 @@ function Cards(props) {
      websites = websites.sort(() => Math.random() - 0.5);
 
 
-  return (<>
-            <CardsRow sites = {websites.slice(0,4)} />
-            <CardsRow sites = {websites.slice(4,8)} />
-            <CardsRow sites = {websites.slice(8,12)} />
-            <CardsRow sites = {websites.slice(12,16)} />
-          </>
+  var rows = [];
+  for (let i=0; i<props.cards_number; i++) {
+    rows.push(<SiteCard  site = {dwebData['sites'][websites[i]]}/>);
+  }
+
+  return (<div className="row">
+            {rows}
+          </div>
       )
 }
 
 
 class Browse extends React.Component {
+
   constructor(props) {
     super(props);
-    this.state = {category: 'new'};
+    this.state = {category: 'new', cards_number: default_cards_number};
     this.onCategoryChanged = this.onCategoryChanged.bind(this);
   }
 
 
   onCategoryChanged (e) {
     this.setState({category: e.target.value});
+    this.setState({cards_number: default_cards_number});
   }
 
     browseMenuSelect(){
@@ -85,7 +79,7 @@ class Browse extends React.Component {
         <div className="container" id="browse_sites">
           {this.browseMenu("l")}
           {this.browseMenu("s")}
-          <Cards category={this.state.category}/>
+          <Cards category={this.state.category} cards_number = {this.state.cards_number}/>
           <div className="text-center load-more-div">
             <button type="button" className="btn btn-outline-secondary load-more-btn">Load More</button>
           </div>  

@@ -39,7 +39,7 @@ class SiteCard extends React.Component{
 
 
     getColumnSize() {
-        return 'col-md-' + this.props.size+' btn';
+        return 'col-xl-3 col-lg-4 col-sm-6 btn';
     }
 
     render(){
