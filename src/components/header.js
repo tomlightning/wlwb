@@ -17,9 +17,13 @@ function Navbar(props) {
 function NavBarSecondaryPage(props){
   return (
     <nav className="navbar navbar-expand-xl h-100">
-      <img className="navbar-brand h-100 d-none d-xl-block" src="./images/logo.svg" alt="Esteroids logo and tagline"/>
+      <Link to={'/'}>
+        <img className="navbar-brand h-100 d-none d-xl-block" src="./images/logo.svg" alt="Esteroids logo and tagline"/>
+      </Link>
 
-      <img className="navbar-brand h-100 d-xl-none d-xxl-none" src="./images/logo.svg" alt="Esteroids logo and tagline"/>
+      <Link to={'/'}>
+        <img className="navbar-brand h-100 d-xl-none d-xxl-none" src="./images/logo.svg" alt="Esteroids logo and tagline"/>
+      </Link>
 
       <button className="navbar-toggler navbar-toggler-right collapsed esteroids-navbar-toggler" 
       type="button" data-bs-toggle="collapse" data-bs-target="#search-bar" 
@@ -69,7 +73,9 @@ function NavBarItemMainPage(props){
 function NavBarMainPage(props){
   return (
     <nav className="navbar navbar-expand-xl flex-grow-0">
-       <img className="navbar-brand" src="./images/logo.svg" alt="Esteroids logo and tagline"/>
+       <Link to={'/'}>
+         <img className="navbar-brand" src="./images/logo.svg" alt="Esteroids logo and tagline"/>
+       </Link>
 
       <button className="navbar-toggler navbar-toggler-right collapsed" 
         type="button" data-bs-toggle="collapse" data-bs-target="#navb" 

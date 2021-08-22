@@ -38,14 +38,17 @@ class SiteCard extends React.Component{
     }
 
 
-    getColumnSize() {
-        return 'col-xl-3 col-lg-4 col-sm-6 btn';
+    getColumnSize(location) {
+        if (location == "search_results") 
+            return 'col-xl-4 col-lg-6 col-md-6 btn';
+        else 
+            return 'col-xl-3 col-lg-4 col-sm-6 btn';
     }
 
     render(){
 
         return(
-            <div className={this.getColumnSize()}>
+            <div className={this.getColumnSize(this.props.location)}>
                 <div className={"card-upper-rect " + isFirst(this.props.first) + " d-flex flex-column justify-content-center align-items-center"}>
                   <img className="card-img" src={this.getScreenshotUrl()}/>
                   <div className="card-site-name"> {this.props.site.title} </div>

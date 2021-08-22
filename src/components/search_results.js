@@ -3,6 +3,9 @@ import SiteCard from "./site_card";
 import React, { Suspense, useState, useEffect } from "react";
 import {useLocation} from "react-router-dom";
 
+const defaultSearchResultsNumber = 10;
+const loadMoreSearechResultsNumber = 8;
+
 function SearchResultsDetails(props) {
   return (
     <div className="search-results">
@@ -10,26 +13,6 @@ function SearchResultsDetails(props) {
     </div>  
   )
 }
-
-// function CardsRow(props) {
-//   if (!props.first) {
-//     return (
-//       <div className="row">
-//         <SiteCard size = {props.size}  site = {dwebData['sites'][props.sites[0]]}/>
-//         <SiteCard size = {props.size} site = {dwebData['sites'][props.sites[1]]}/>
-//         <SiteCard size = {props.size} site = {dwebData['sites'][props.sites[2]]}/>
-//       </div>
-//     )
-//   } else {
-//     return (
-//       <div className="row">
-//         <SiteCard size = {props.size}  site = {dwebData['sites'][props.sites[0]]} first = "true"/>
-//         <SiteCard size = {props.size} site = {dwebData['sites'][props.sites[1]]} first = "true"/>
-//         <SiteCard size = {props.size} site = {dwebData['sites'][props.sites[2]]} first = "true"/>
-//       </div>
-//     )
-//   }
-// }
 
 const searchResults = (searchTerm, sites) => {
 
@@ -42,6 +25,7 @@ const searchResults = (searchTerm, sites) => {
         (site_details[1][1].toLowerCase().search(lowerCaseSearchKey) >= 0) || 
         (site_details[2][1].toLowerCase().search(lowerCaseSearchKey) >= 0))
    });
+
   //  return filtered_arr;
   let only_names_arr = filtered_arr.flat().filter(function(val, ind) {return ind % 2 == 0} );
 
@@ -50,15 +34,20 @@ const searchResults = (searchTerm, sites) => {
 }
 
 function Cards(props) {
-  
+  var lowerCardsResults = props.searchResults.slice(7, props.searchResults.length);
+
+  var lowerResults = [];
+  for (let i=0; i<Math.min(props.currentResultsShown-6, lowerCardsResults.length); i++) {
+    lowerResults.push(<SiteCard  site = {dwebData['sites'][lowerCardsResults[i]]}/>);
+  }
 
   return (
       <div>
         <div className="row">
           <div className="col-md-9">
             <div className="row">
-              { props.searchResults.slice(0, props.currentResultsShown).map((site, index) => (
-                            <SiteCard key={index} size="3" site = {dwebData['sites'][site]}/>
+              { props.searchResults.slice(0, 6).map((site, index) => (
+                            <SiteCard key={index} location="search_results" site = {dwebData['sites'][site]}/>
                           )) }
             </div>
           
@@ -72,6 +61,11 @@ function Cards(props) {
             </div>
         </div>
 
+        <div className="row">
+          {lowerResults}
+        </div>
+
+
    
       </div>
       )
@@ -79,13 +73,11 @@ function Cards(props) {
 
 
 const LoadMore = ({totalResults, currentResultsShown, setCurrentResultsShown}) => {
-    console.log(currentResultsShown);
-    console.log(setCurrentResultsShown);
     if (totalResults>currentResultsShown){
       return (
       <div className="text-center load-more-div">
           <button type="button" className="btn btn-outline-secondary load-more-btn" onClick={() => {
-                    setCurrentResultsShown(currentResultsShown+12)
+                    setCurrentResultsShown(currentResultsShown+loadMoreSearechResultsNumber)
                 }}>Load More</button>
       </div>
       )
@@ -97,11 +89,7 @@ const LoadMore = ({totalResults, currentResultsShown, setCurrentResultsShown}) =
 
 function SearchResults(props){
 
-    
-
-   
-
-    const [currentResultsShown, setCurrentResultsShown] = useState(12);
+    const [currentResultsShown, setCurrentResultsShown] = useState(defaultSearchResultsNumber);
     const search_results = searchResults(props.searchTerm, dwebData["sites"]);
 
     let location = useLocation();

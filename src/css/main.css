@@ -182,12 +182,7 @@ body {
     height: 195px;
     background: #E3EBED;
     border-radius: 6px;
-    margin-top:  50px;
-}
-
-.card-upper-rect-first-row-search-results {  
-    padding-top: 0;
-    margin-top: 15px;
+    margin-top:  10px;
 }
 
 .card-img {
@@ -204,6 +199,11 @@ body {
     line-height: 25px;
     color: #0040A3;
     padding-top: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* number of lines to show */
+    -webkit-box-orient: vertical;
 }
 
 .card-site-description {
@@ -212,6 +212,7 @@ body {
     line-height: 20px;
     color: #000000;
     text-align: center;
+    margin-top: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -223,6 +224,7 @@ body {
     font-family: Alpino-Regular;
     font-size: 1.1em;
     line-height: 19px;
+    margin-bottom: 20px;
 }
 
 .card-content {
