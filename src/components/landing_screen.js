@@ -27,6 +27,9 @@ function MainSearchBar(props){
   let history = useHistory();
 
   const handleSearch = event =>{
+      if (props.searchTerm == "")
+          return;
+
       event.preventDefault();
       history.push({
         pathname: '/search',

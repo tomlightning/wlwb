@@ -37,7 +37,7 @@ const App = () => {
                 <ScrollToTop/>
                 <LandingScreen searchTerm={searchTerm} 
                             setSearchTerm={setSearchTerm}/>
-                <Browse/>
+                <Browse def_cat="new"/>
             </Route>
             <Route path="/search">
                 <ScrollToTop/>

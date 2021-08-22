@@ -2,7 +2,7 @@ import React from "react";
 import { dwebData } from "../data/ens_dict.js";
 import SiteCard from "./site_card";
 
-const default_cards_number = "12";
+const def_cards_number = "12";
 const load_more_cards = 12;
 
 function Cards(props) {
@@ -34,14 +34,15 @@ class Browse extends React.Component {
     super(props);
 
     let load_more = true;
-    let cards_number = default_cards_number;
+    let cards_number = def_cards_number;
+    let def_cat = this.props.def_cat;
 
-    if (dwebData["new"].length <= default_cards_number) {
+    if (dwebData[def_cat].length <= def_cards_number) {
       load_more = false;
-      cards_number = dwebData["new"].length;
+      cards_number = dwebData[def_cat].length;
     }
 
-    this.state = {category: 'new', cards_number: cards_number, load_more: load_more};
+    this.state = {category: def_cat, cards_number: cards_number, load_more: load_more};
     this.onCategoryChanged = this.onCategoryChanged.bind(this);
     this.onLoadMore = this.onLoadMore.bind(this);
   }
@@ -49,7 +50,7 @@ class Browse extends React.Component {
 
   onCategoryChanged (e) {
     this.setState({category: e.target.value});
-    this.setState({cards_number: default_cards_number});
+    this.setState({cards_number: def_cards_number});
     this.setState({load_more: true});
   }
 
