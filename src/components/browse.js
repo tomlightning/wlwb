@@ -16,13 +16,13 @@ function Cards(props) {
      websites = websites.sort(() => Math.random() - 0.5);
 
 
-  var rows = [];
+  var cards = [];
   for (let i=0; i<props.cards_number; i++) {
-    rows.push(<SiteCard  site = {dwebData['sites'][websites[i]]}/>);
+    cards.push(<SiteCard  site = {dwebData['sites'][websites[i]]}/>);
   }
 
   return (<div className="row">
-            {rows}
+            {cards}
           </div>
       )
 }
