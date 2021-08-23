@@ -1,5 +1,5 @@
 import ScrollToTop from "./scroll_to_top";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Header from "./header";
 import {
@@ -151,20 +151,77 @@ function SearchNFTMainXS(props) {
     )
 }
 
-function BrowseSitesHelper(){
-  let history = useHistory();
 
-  return (<div className="position-absolute bottom-0 w-95 text-center bounce btn" onClick={() => {
+
+function BrowseSitesHelper(){
+  const [browseInView, setBrowseInView] = useState(false);
+
+  useEffect(() => {
+    var el = document.getElementById('browse_sites');
+
+      function isElementInViewport (el) {
+    
+    
+        var rect = el.getBoundingClientRect();
+      
+        
+        if (rect.top==0&&rect.bottom==0){
+          return false;
+        }
+        
+        return (rect.bottom >= 0 && rect.right >= 0 && (rect.top + 10) < (window.innerHeight || document.documentElement.clientHeight) && (rect.left + 10) < (window.innerWidth || document.documentElement.clientWidth));
+      }
+            
+      function onVisibilityChange(el, callback) {
+        var old_visible;
+        return function () {
+            var visible = isElementInViewport(el);
+            if (visible != old_visible) {
+                old_visible = visible;
+                if (typeof callback == 'function') {
+                    
+                    callback(visible);
+                }
+            }
+        }
+      }
+          
+      const visibleSetTrue = setBrowseInView
+      var handler = onVisibilityChange(el, function(visible) {
+        
+        visibleSetTrue(visible);
+        
+      });
+            
+          
+    window.addEventListener('DOMContentLoaded', handler, false);
+    window.addEventListener('load', handler, false);
+    window.addEventListener('scroll', handler, false);
+    window.addEventListener('resize', handler, false);
+  
+
+  })
+         
+  let class_names = "position-absolute bottom-0 w-95 text-center bounce btn"
+  if (browseInView){
+    class_names +=" invisible"
+  }
+  return (<div className={class_names} onClick={() => {   
+      window.setTimeout(() => {
         const id = 'browse_sites'
         let element = document.getElementById(id);
-        setTimeout(() => {
-            if (element) {
-                element.scrollIntoView();
-            }
-        }, 200);
-  }}>
-  <img src="./images/arrow.svg" alt="Arrow down"/>Browse dWebsites
-</div>);
+        if (element) {
+            element.scrollIntoView({block: "start",
+            inline: "center",
+            behavior: "smooth",
+            alignToTop: true});
+            
+        }
+      }, 200); 
+            }}>
+            <img src="./images/arrow.svg" alt="Arrow down"/>Browse dWebsites
+          </div>);
+ 
 }
 
 const LandingScreen = ({searchTerm, setSearchTerm})=>{

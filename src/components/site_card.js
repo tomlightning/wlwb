@@ -18,7 +18,7 @@ class SiteCard extends React.Component{
         if (this.props.site.sc){
             try {
                 
-                return './images/screenshots/'+this.props.site.name+'_screenshot.jpg';
+                return './images/screenshots/'+this.props.site.n+'_screenshot.jpg';
             }
             catch {
                 return './images/logo_placeholder.png';
@@ -29,12 +29,12 @@ class SiteCard extends React.Component{
     }
 
     getLink(){
-        return 'https://'+this.props.site.name + '.eth.link';
+        return 'https://'+this.props.site.n + '.eth.link';
     }
 
     
     getAddress() {
-        return this.props.site.name + '.eth';
+        return this.props.site.n + '.eth';
     }
 
 
@@ -51,11 +51,11 @@ class SiteCard extends React.Component{
             <div className={this.getColumnSize(this.props.location)}>
                 <div className={"card-upper-rect " + isFirst(this.props.first) + " d-flex flex-column justify-content-center align-items-center"}>
                   <img className="card-img" src={this.getScreenshotUrl()}/>
-                  <div className="card-site-name"> {this.props.site.title} </div>
+                  <div className="card-site-name"> {this.props.site.t} </div>
                 </div> 
                 <div className="card-content d-flex flex-column justify-content-around align-items-center">
                   <div className="card-site-description">
-                    {this.props.site.desc}
+                    {this.props.site.d}
                   </div>
                   <div className="card-site-link">
                     <a href={this.getLink()}> {this.getAddress()} </a>

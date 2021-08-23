@@ -1,31 +1,69 @@
-import React from "react";
 import { dwebData } from "../data/ens_dict.js";
 import SiteCard from "./site_card";
+import React from "react";
 
-const def_cards_number = "12";
+
+const DEFAULT_NUMBER_OF_CARDS = 12;
 const load_more_cards = 12;
 
 function Cards(props) {
-  if (props.category == "all") 
+  if (props.category === "all") 
     var websites = Object.keys(dwebData['sites']);
   else
     var websites = dwebData[props.category];
 
   // shuffle the 'popular' and 'all' categories
-  if (props.category == "all" || props.category == "popular")
+  if (props.category === "all" || props.category === "popular")
      websites = websites.sort(() => Math.random() - 0.5);
 
 
   var cards = [];
   for (let i=0; i<props.cards_number; i++) {
-    cards.push(<SiteCard  site = {dwebData['sites'][websites[i]]}/>);
+    cards.push(<SiteCard  site = {dwebData['sites'][websites[i]]} key={i} />);
   }
 
-  return (<div className="row">
+  return (<div className="row" id="browse_sites">
             {cards}
           </div>
       )
 }
+
+
+
+function BrowseMenuSelect(props){
+  return ( <select className="category-select" id="category-select" 
+              value={props.category} onChange={props.onCategoryChanged}>
+            <option value="new">New</option>
+            <option value="popular">Popular</option>
+            <option value="recent">Recently Updated</option>
+            <option value="all">All</option>
+          </select>);
+
+}
+
+function BrowseMenu(props) {
+  if (props.size === "l") {
+    return (
+        <div className="d-sm-none d-md-none d-lg-none d-xl-none d-xxl-none">
+          <div className="container text-center">
+            
+            <BrowseMenuSelect onCategoryChanged={props.onCategoryChanged} category={props.category} />
+          </div>
+      </div>
+    );
+  } else if (props.size === "s") {
+      return (
+        <div className="d-none d-sm-block">
+          <div className="container">
+          <BrowseMenuSelect onCategoryChanged={props.onCategoryChanged} category={props.category} />
+          </div>
+        </div>
+      )
+    } else {
+      return ("<></>")
+    }
+}
+
 
 
 class Browse extends React.Component {
@@ -34,10 +72,10 @@ class Browse extends React.Component {
     super(props);
 
     let load_more = true;
-    let cards_number = def_cards_number;
+    let cards_number = DEFAULT_NUMBER_OF_CARDS;
     let def_cat = this.props.def_cat;
 
-    if (dwebData[def_cat].length <= def_cards_number) {
+    if (dwebData[def_cat].length <= DEFAULT_NUMBER_OF_CARDS) {
       load_more = false;
       cards_number = dwebData[def_cat].length;
     }
@@ -50,13 +88,13 @@ class Browse extends React.Component {
 
   onCategoryChanged (e) {
     this.setState({category: e.target.value});
-    this.setState({cards_number: def_cards_number});
+    this.setState({cards_number: DEFAULT_NUMBER_OF_CARDS});
     this.setState({load_more: true});
   }
 
   onLoadMore(e) {
     var websites;
-    if (this.state.category == "all") 
+    if (this.state.category === "all") 
       websites = Object.keys(dwebData['sites']);
     else
       websites = dwebData[this.state.category];
@@ -71,38 +109,7 @@ class Browse extends React.Component {
     this.setState({cards_number: new_cards_number});
   }
 
-    browseMenuSelect(){
-      return ( <select className="category-select" id="category-select" 
-                  value={this.state.category} onChange={this.onCategoryChanged}>
-      <option value="new">New</option>
-      <option value="popular">Popular</option>
-      <option value="recent">Recently Updated</option>
-      <option value="all">All</option>
-    </select>);
-
-    }
-
-    browseMenu(size) {
-      if (size == "l") {
-        return (
-            <div className="d-sm-none d-md-none d-lg-none d-xl-none d-xxl-none">
-              <div className="container text-center">
-                {this.browseMenuSelect()}
-              </div>
-          </div>
-        );
-      } else if (size == "s") {
-          return (
-            <div className="d-none d-sm-block">
-              <div className="container">
-              {this.browseMenuSelect()}
-              </div>
-            </div>
-          )
-        } else {
-          return ("<></>")
-        }
-    }
+    
 
     render() { 
       var loadMoreButton;
@@ -114,8 +121,10 @@ class Browse extends React.Component {
 
       return (
         <div className="container" id="browse_sites">
-          {this.browseMenu("l")}
-          {this.browseMenu("s")}
+
+          <BrowseMenu size="l" onCategoryChanged={this.onCategoryChanged} category={this.state.category} />
+          <BrowseMenu size="s" onCategoryChanged={this.onCategoryChanged} category={this.state.category} />
+
           <Cards category={this.state.category} cards_number = {this.state.cards_number}/>
           <div className="text-center load-more-div">
             <button type="button" onClick={this.onLoadMore}

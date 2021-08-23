@@ -26,18 +26,16 @@ import ScrollToTop from "./components/scroll_to_top";
 
 const App = () => {
     const [searchTerm, setSearchTerm] = useState('');
-
-    
-     
+  
     return (
     <Router basename="/">
         <ScrollToTop />
         <Switch>
             <Route exact path="/">
                 <ScrollToTop/>
-                <LandingScreen searchTerm={searchTerm} 
-                            setSearchTerm={setSearchTerm}/>
-                <Browse def_cat="new"/>
+                <LandingScreen searchTerm={searchTerm} setSearchTerm={setSearchTerm}
+               />
+                <Browse def_cat="new" />
             </Route>
             <Route path="/search">
                 <ScrollToTop/>

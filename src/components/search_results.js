@@ -3,7 +3,7 @@ import SiteCard from "./site_card";
 import React, { Suspense, useState, useEffect } from "react";
 import {useLocation} from "react-router-dom";
 
-const defaultSearchResultsNumber = 10;
+const DEFAULT_SEARCH_RESULTS_NUMBER = 10;
 const loadMoreSearechResultsNumber = 8;
 
 function SearchResultsDetails(props) {
@@ -27,6 +27,7 @@ const searchResults = (searchTerm, sites) => {
    });
 
   //  return filtered_arr;
+  // we only need the names for browse results - maybe need optimization later
   let only_names_arr = filtered_arr.flat().filter(function(val, ind) {return ind % 2 == 0} );
 
   return only_names_arr;
@@ -89,7 +90,7 @@ const LoadMore = ({totalResults, currentResultsShown, setCurrentResultsShown}) =
 
 function SearchResults(props){
 
-    const [currentResultsShown, setCurrentResultsShown] = useState(defaultSearchResultsNumber);
+    const [currentResultsShown, setCurrentResultsShown] = useState(DEFAULT_SEARCH_RESULTS_NUMBER);
     const search_results = searchResults(props.searchTerm, dwebData["sites"]);
 
     let location = useLocation();
